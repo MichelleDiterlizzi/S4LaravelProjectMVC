@@ -19,10 +19,11 @@ class EventController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'adress' => 'required|string|max:255',
-            'date' => 'required|date',
+            'date' => 'required|date_format:Y-m-d\TH:i',
             'price' => 'required|numeric',
             'is_free' => 'required|boolean',
-            'description' => 'required|string','image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048', // Imagen opcional
+            'description' => 'required|string',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048', // Imagen opcional
             'creator_id' => 'required|exists:users,id', // Asegúrate de que el creador exista
             'category_id' => 'required|exists:categories,id', // Asegúrate de que la categoría exista
         ]);
