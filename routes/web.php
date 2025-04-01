@@ -1,15 +1,11 @@
 <?php
-
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/events/create', function () {
-    return view('create');
-});
+Route::get('/events/create', [EventController::class, 'create'])->name('events.create'); // Mostrar formulario
 
-Route::post('/events', function () {
-    return view('test');
-});
+Route::post('/events', [EventController::class, 'store'])->name('events.store'); // Guardar evento
