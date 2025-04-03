@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Category;
 
 class EventController extends Controller
 {
     public function create()
     {
-        return view('events.create');
+        $categories = Category::all();
+        return view('events.create', compact('categories'));
     }
 
     // Guarda un evento en la base de datos
@@ -23,7 +25,7 @@ class EventController extends Controller
             'price' => 'required|numeric',
             'is_free' => 'required|boolean',
             'description' => 'required|string',
-            'image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048', // Imagen opcional
+            'image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
             'creator_id' => 'required|exists:users,id', // Asegúrate de que el creador exista
             'category_id' => 'required|exists:categories,id', // Asegúrate de que la categoría exista
         ]);
