@@ -22,7 +22,7 @@ class EventController extends Controller
             'title' => 'required|string|max:255',
             'adress' => 'required|string|max:255',
             'date' => 'required|date_format:Y-m-d\TH:i',
-            'price' => 'required|numeric',
+            'price' => 'nullable|numeric',
             'is_free' => 'required|boolean',
             'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
@@ -35,6 +35,12 @@ class EventController extends Controller
             $path = $request->file('image')->store('events', 'public'); // Guarda en storage/app/public/events
             $validated['image'] = $path;
         }
+
+        if ($validated['is_free']) {
+            $validated['price'] = null; // Si es gratuito, el precio será null
+        }
+
+        $validated['creator_id'] = auth()->id(); // Asignar automáticamente el ID del usuario autenticado
 
         
         Event::create($validated);

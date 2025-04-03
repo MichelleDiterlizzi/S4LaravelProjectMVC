@@ -15,7 +15,7 @@
         <div style="color: green;">{{ session('success') }}</div>
         @endif
 
-        <form class="flex flex-wrap gap-4 "action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data">
+        <form class="flex flex-wrap gap-4 " action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="w-[40%]">
