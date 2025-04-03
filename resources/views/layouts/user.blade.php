@@ -10,7 +10,7 @@
     @vite(['resources/js/app.js'])
 </head>
 <body>
-    <header class="bg-orange-300 text-white p-4 flex justify-between items-center ">
+    <header class="bg-orange-300 text-white p-4 flex justify-between items-center">
         <h1 class="text-emerald-900 font-bold text-3xl font-serif w-[10%]">Event Organizer</h1>
         <nav class="w-[50%] flex justify-end mx-6">
             <ul class="flex gap-6">
