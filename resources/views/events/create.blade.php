@@ -1,12 +1,17 @@
 
-<div class="container">
+@extends('layouts.user')
+
+@section('title', 'Crear Evento')
+@section('content')
+
+<div class="flex flex-col items-center bg-white py-4 gap-4">
     <h1>Crear Evento</h1>
 
     @if(session('success'))
         <div style="color: green;">{{ session('success') }}</div>
     @endif
 
-    <form action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data">
+    <form class="flex flex-col "action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <label for="title">Título:</label>
@@ -43,3 +48,4 @@
         <button type="submit">Crear Evento</button>
     </form>
 </div>
+@endsection

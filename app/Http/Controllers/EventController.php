@@ -14,10 +14,10 @@ class EventController extends Controller
         return view('events.create', compact('categories'));
     }
 
-    // Guarda un evento en la base de datos
+    
     public function store(Request $request)
     {
-        // Validar los datos
+        
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'adress' => 'required|string|max:255',
@@ -36,7 +36,7 @@ class EventController extends Controller
             $validated['image'] = $path;
         }
 
-        // Crear el evento
+        
         Event::create($validated);
 
         return redirect()->route('events.create')->with('success', 'Evento creado exitosamente.');
