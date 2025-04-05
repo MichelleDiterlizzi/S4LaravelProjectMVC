@@ -101,7 +101,7 @@
         
 <div class="w-[82%] flex flex-col">
     <label for="image">Imagen:</label>
-        <input id="image" class="hidden" type="file" name="image" onchange="updateFileName(this)">
+        <input id="image" class="hidden" type="file" name="image" onchange="updateFileName(this)" value="{{old('image')}}">
 
         <label for="image" class="p-1 border rounded-2xl border-gray-300 text-gray-700 bg-gray-100 w-[30%]">
             Seleccionar archivo..
