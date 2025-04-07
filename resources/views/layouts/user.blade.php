@@ -16,9 +16,7 @@
             <ul class="flex gap-6">
                 <li class="font-bold text-xs"><a href="">HOME</a></li>
                 <li class="text-xs font-bold"><a href="">CATEGORIAS</a></li>
-                <li class="text-xs font-bold"><a href="{{ route('events.create') }}">CREAR EVENTO</a></li>
-                <li class="text-xs font-bold"><a href="">PERFIL</a></li>
-                <li class="text-xs font-bold"><a href="">LOGOUT</a></li>
+                <li class="text-xs font-bold"><a href="">CONTACT US</a></li>
             </ul>
         </nav>
     </header>
