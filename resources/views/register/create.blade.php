@@ -1,7 +1,7 @@
 
 @extends('layouts.user')
 
-@section('title', 'Crear Evento')
+@section('title', 'Crear Usuario')
 @section('content')
 
 <div class="flex flex-col items-center bg-white py-10 gap-4">
@@ -11,12 +11,12 @@
         <h1 class="font-bold text-xl ">WELCOME!</h1>
         <p class="">Disfruta de los mejores eventos de la ciudad, o organiza los tutyos!</p>
 
-        <form class="flex flex-col flex-wrap gap-4 items-center w-[70%]" action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+        <form class="flex flex-col flex-wrap gap-4 items-center w-[70%]" action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="w-full flex flex-col gap-2">
             <label for="name">Nombre y apellidos</label>
-            <input class="p-2 border border-gray-300 text-gray-700 bg-gray-100 w-full" type="text" placeholder="NOMRE Y APELLIDOS" value="{{old('name')}}" name="name" required>
+            <input class="p-2 border border-gray-300 text-gray-700 bg-gray-100 w-full" type="text" placeholder="NOMBRE Y APELLIDOS" value="{{old('name')}}" name="name" required>
             @error ('name')
             <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
             @enderror
