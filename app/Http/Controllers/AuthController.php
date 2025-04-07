@@ -37,9 +37,4 @@ class AuthController extends Controller
     }
     
     
-    public function destroy($id)
-    {
-        
-        return redirect()->route('user.index');
-    }
 }

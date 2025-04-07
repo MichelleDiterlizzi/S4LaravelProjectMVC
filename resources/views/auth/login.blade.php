@@ -23,7 +23,7 @@
         <div class="hidden md:flex w-2/4 bg-orange-600 flex-col items-center justify-top text-white " style="background-image: url('{{ asset('img/night-event.jpg') }}') ; background-size: cover; background-position: center;">
         
             <h2 class="text-2xl font-bold mt-10">Welcome Page</h2>
-            <p class="text-center mt-2">Crea y participa a los mejores eventos de la ciudad!</p>
+            <p class="text-center m-4">Crea y participa a los mejores eventos de la ciudad!</p>
 
         </div>
 
