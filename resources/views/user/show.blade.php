@@ -9,8 +9,8 @@
 
     <div class=" bg-stone-200 rounded-sm p-4 flex gap-3 flex-col w-[20%] ">  
         <a href="" class="text-cyan-800">Perfil de usuario</a>
-        <a href="">Edita perfil</a>
-        <a href="">Eventos</a>
+        <a href="" >Edita perfil</a>
+        <a href="" >Eventos</a>
         <a href="">Sign out</a>
         <a href="" class="text-red-500 border-gray-500 border-t">Eliminar cuenta</a>
     </div>
@@ -36,7 +36,7 @@
                     <div class="flex w-full justify-between gap-2">
                         <div class="border border-gray-500 flex w-[100%] items-center">
                             <p class="ml-4">
-                                {{ Auth::user()->email }}
+                                {{ Auth::user()->email}}
                             </p>
                         </div>
                     </div>

@@ -11,4 +11,10 @@ class UserController extends Controller
         $user = auth()->user();
         return view('user.show', compact('user')); 
     }
+
+    public function edit()
+    {
+        $user = auth()->user();
+        return view('user.edit', compact('user')); 
+    }
 }

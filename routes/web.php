@@ -29,3 +29,7 @@ Route::get('/logout/{id}', [AuthController::class, 'destroy'])->name('logout');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
 Route::get('/user/show', [UserController::class, 'show'])->name('user.show')->middleware('auth');
+
+Route::get('/user/edit', [UserController::class, 'edit'])->name('user.edit');
+
+Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
