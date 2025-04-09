@@ -9,23 +9,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index', function () {
-    return view('index');
-})->name('index');
 
+Route::middleware('guest')->group(function () {
+    
+    Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
 
-Route::get('/events/create', [EventController::class, 'create'])->name('events.create'); 
+    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+    
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
 
-Route::get('/register/create', [RegisterController::class, 'create'])->name('register.create');
+    Route::post('/authenticate', [AuthController::class, 'authenticate'])
+           ->name('login.authenticate');
 
-Route::post('/events', [EventController::class, 'store'])->name('events.store');
-
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-
-Route::post('/autenticate', [AuthController::class, 'autenticate'])->name('login.autenticate');
-
-Route::get('/logout/{id}', [AuthController::class, 'destroy'])->name('logout');
-
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
-
-Route::get('/user/show', [UserController::class, 'show'])->name('user.show')->middleware('auth');
+});
