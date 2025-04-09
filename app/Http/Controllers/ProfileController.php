@@ -3,29 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// QUITA o comenta esta si la tenías de antes (no es necesaria aquí): use App\Models\User;
+use Illuminate\Support\Facades\Auth; // <-- ¡¡AÑADE ESTA LÍNEA!!
+use Illuminate\Support\Facades\Hash; // Necesaria si actualizas contraseña
+use Illuminate\Validation\Rule; 
 
 class ProfileController extends Controller
 {
     public function show()
     {
-        $user = auth()->user();
+
+        $user = Auth::user();
         return view('Profile.show', compact('user')); 
     }
 
     public function edit()
     {
-        $user = auth()->user();
-        return view('Profile.edit', compact('user')); 
+        $user = Auth::user();
+        return view('profile.edit', compact('user')); 
     }
 
     public function update(Request $request)
 {
-    $user = auth()->user();
+    $user = Auth::user();
 
     // Validar los datos enviados desde el formulario
     $validated = $request->validate([
         'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255|unique:Profiles,email,' . $user->id,
+        'email' => 'required|email|max:255|Rule::unique,email,' . $user->id,
         'password' => 'nullable|string|min:8|confirmed',
     ]);
 
@@ -39,6 +44,6 @@ class ProfileController extends Controller
     $user->save();
 
     // Redirigir con un mensaje de éxito
-    return redirect()->route('Profile.show')->with('success', 'Perfil actualizado correctamente.');
+    return redirect()->route('profile.show')->with('success', 'Perfil actualizado correctamente.');
 }
 }

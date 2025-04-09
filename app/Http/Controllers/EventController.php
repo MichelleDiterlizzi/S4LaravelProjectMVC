@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -40,7 +41,7 @@ class EventController extends Controller
             $validated['price'] = null; // Si es gratuito, el precio será null
         }
 
-        $validated['creator_id'] = auth()->id(); // Asignar automáticamente el ID del usuario autenticado
+        $validated['creator_id'] = Auth::id(); // Asigna el ID del usuario autenticado
 
         
         Event::create($validated);

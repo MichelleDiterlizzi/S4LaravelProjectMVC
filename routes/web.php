@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     
-    Route::get('/Profile/show', [ProfileController::class, 'show'])->name('Profile.show');
+    Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show');
     
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
