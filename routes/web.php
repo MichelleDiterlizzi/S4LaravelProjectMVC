@@ -9,6 +9,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/index', function () {
+    return view('index');
+})->name('index');
+
 
 Route::middleware('guest')->group(function () {
     
@@ -17,23 +21,11 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
     
     Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/index', function () {
-    return view('index');
-})->name('index');
- 
 
     Route::post('/authenticate', [AuthController::class, 'authenticate'])
            ->name('login.authenticate');
 
 });
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-
-    Route::post('/authenticate', [AuthController::class, 'authenticate'])
-           ->name('login.authenticate');
-
-Route::get('/logout/{id}', [AuthController::class, 'destroy'])->name('logout');
-
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
 
 Route::middleware('auth')->group(function () {

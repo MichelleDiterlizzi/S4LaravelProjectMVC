@@ -8,35 +8,35 @@ class ProfileController extends Controller
 {
     public function show()
     {
-        $Profile = auth()->Profile();
-        return view('Profile.show', compact('Profile')); 
+        $user = auth()->user();
+        return view('Profile.show', compact('user')); 
     }
 
     public function edit()
     {
-        $Profile = auth()->Profile();
-        return view('Profile.edit', compact('Profile')); 
+        $user = auth()->user();
+        return view('Profile.edit', compact('user')); 
     }
 
     public function update(Request $request)
 {
-    $Profile = auth()->Profile();
+    $user = auth()->user();
 
     // Validar los datos enviados desde el formulario
     $validated = $request->validate([
         'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255|unique:Profiles,email,' . $Profile->id,
+        'email' => 'required|email|max:255|unique:Profiles,email,' . $user->id,
         'password' => 'nullable|string|min:8|confirmed',
     ]);
 
-    $Profile->name = $validated['name'];
-    $Profile->email = $validated['email'];
+    $user->name = $validated['name'];
+    $user->email = $validated['email'];
 
     if (!empty($validated['password'])) {
-        $Profile->password = bcrypt($validated['password']);
+        $user->password = bcrypt($validated['password']);
     }
 
-    $Profile->save();
+    $user->save();
 
     // Redirigir con un mensaje de éxito
     return redirect()->route('Profile.show')->with('success', 'Perfil actualizado correctamente.');

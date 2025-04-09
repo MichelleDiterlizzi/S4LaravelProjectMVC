@@ -31,7 +31,7 @@
 
             <h2 class="text-2xl text-orange-400 font-bold text-center mb-4">Iniciar Sesión</h2>
 
-            <form class="w-[70%] mt-6 flex flex-col gap-6" action="{{ route('login.autenticate') }}" method="POST" enctype="multipart/form-data">
+            <form class="w-[70%] mt-6 flex flex-col gap-6" action="{{ route('login.authenticate') }}" method="POST" enctype="multipart/form-data">
             @csrf
         
 
