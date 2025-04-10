@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// QUITA o comenta esta si la tenías de antes (no es necesaria aquí): use App\Models\User;
-use Illuminate\Support\Facades\Auth; // <-- ¡¡AÑADE ESTA LÍNEA!!
-use Illuminate\Support\Facades\Hash; // Necesaria si actualizas contraseña
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash; 
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule; 
 
 class ProfileController extends Controller
@@ -45,5 +45,26 @@ class ProfileController extends Controller
 
     // Redirigir con un mensaje de éxito
     return redirect()->route('profile.show')->with('success', 'Perfil actualizado correctamente.');
-}
+    }
+
+
+
+    public function destroy(Request $request) 
+    {
+        $request->validateWithBag('userDeletion', [
+            'password' => ['required', 'current_password'],
+        ]);
+
+        $user = $request->user();
+
+        Auth::logout();
+
+        $user->delete(); // Esto disparará eventos 'deleting'/'deleted' si los tienes
+
+        
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('index')->with('status', '¡Tu cuenta ha sido eliminada!');
+    }
 }
