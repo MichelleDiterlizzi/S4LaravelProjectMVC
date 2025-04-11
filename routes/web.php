@@ -12,8 +12,14 @@ Route::get('/', function () {
 Route::get('/index', function () {
 
     return view('index');
-    
+
     })->name('index');
+
+    Route::get('/destroy', function () {
+
+        return view('profile.warning');
+    
+    })->name('profile.destroy');
 
 
 Route::middleware('guest')->group(function () {
@@ -35,7 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
     Route::post('/events', [EventController::class, 'store'])->name('events.store');
 
-    Route::post('/logout', [AuthController::class, 'destroy'])->name('logout');
+    Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     
@@ -44,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show');
     
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 
 });
 
