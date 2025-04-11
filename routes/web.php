@@ -10,8 +10,16 @@ Route::get('/', function () {
 });
 
 Route::get('/index', function () {
+
     return view('index');
-})->name('index');
+
+    })->name('index');
+
+    Route::get('/destroy', function () {
+
+        return view('profile.warning');
+    
+    })->name('profile.destroy');
 
 
 Route::middleware('guest')->group(function () {
@@ -42,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show');
     
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 
 });
 
