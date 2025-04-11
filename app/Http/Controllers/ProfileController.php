@@ -29,9 +29,14 @@ class ProfileController extends Controller
 
     // Validar los datos enviados desde el formulario
     $validated = $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255|Rule::unique,email,' . $user->id,
-        'password' => 'nullable|string|min:8|confirmed',
+        'name' => ['required', 'string', 'max:255'],
+        'email' => [
+            'required',
+            'email',
+            'max:255',
+            Rule::unique('users', 'email')->ignore($user->id),
+        ],
+        'password' => ['nullable', 'string', 'min:8', 'confirmed'],
     ]);
 
     $user->name = $validated['name'];

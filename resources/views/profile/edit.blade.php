@@ -8,11 +8,11 @@
     
 
     <div class=" bg-stone-200 rounded-sm p-4 flex gap-3 flex-col w-[20%] ">  
-        <a href="" >Perfil de usuario</a>
-        <a href="" class="text-cyan-800">Edita perfil</a>
+        <a href="{{ route('profile.show') }}" >Perfil de usuario</a>
+        <a href="{{ route('profile.edit') }}" class="text-cyan-800">Edita perfil</a>
         <a href="">Eventos</a>
-        <a href="">Sign out</a>
-        <a href="" class="text-red-500 border-gray-500 border-t">Eliminar cuenta</a>
+        <a href="{{ route('logout') }}">Sign out</a>
+        <a href="{{ route('destroy') }}" class="text-red-500 border-gray-500 border-t">Eliminar cuenta</a>
     </div>
 
     <div class="rounded-sm flex gap-2 flex-col w-[60%] justify-top items-center border border-gray-500 ">
@@ -27,13 +27,13 @@
                 </div>
             @endif
 
-            <form class="mt-5 mb-5" action="{{ route('user.update') }}" method="POST">
+            <form class="mt-5 mb-5" action="{{ route('profile.update') }}" method="POST">
                 @csrf
-                @method('PUT')
+                @method('PATCH')
         
                 <div class="mb-4">
                     <label for="name" class="block text-sm font-medium">Nombre</label>
-                    <input type="text" name="name" id="name" value="{{ old('name')}}" class="w-full border border-gray-300 p-2 rounded" required>
+                    <input type="text" name="name" id="name" value="{{ old('name', Auth::user()->name) }}" class="w-full border border-gray-300 p-2 rounded">
                     @error('name')
                         <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror
@@ -41,7 +41,7 @@
         
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium">Email</label>
-                    <input type="email" name="email" id="email" value="{{ old('email')}}" class="w-full border border-gray-300 p-2 rounded" required>
+                    <input type="email" name="email" id="email" value="{{ old('email', Auth::user()->email) }}" class="w-full border border-gray-300 p-2 rounded">
                     @error('email')
                         <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror
@@ -49,7 +49,7 @@
         
                 <div class="mb-4">
                     <label for="password" class="block text-sm font-medium">Nueva Contraseña</label>
-                    <input type="password" name="password" id="password" class="w-full border border-gray-300 p-2 rounded" required>
+                    <input type="password" name="password" id="password" class="w-full border border-gray-300 p-2 rounded" placeholder="">
                     @error('password')
                         <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror

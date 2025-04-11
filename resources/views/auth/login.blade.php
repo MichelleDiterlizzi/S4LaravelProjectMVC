@@ -54,7 +54,7 @@
     </form>
 
     <a href="" class="text-orange-800 text-sm hover:underline text-center mt-4">¿Has olvidado tu contraseña?</a>
-    <a href="" class="text-orange-800 text-sm hover:underline text-center mt-4">Crea una nueva cuenta</a>
+    <a href="{{ route('register.create') }}" class="text-orange-800 text-sm hover:underline text-center mt-4">Crea una nueva cuenta</a>
 
 </div>
 </div>

@@ -30,7 +30,7 @@ class RegisterController extends Controller
                 'email' => $validatedData['email'],
                 'password' => Hash::make($validatedData['password']), // ¡Importante hashear la contraseña!
             ]);
-            return redirect()->route('user.login')->with('success', 'Usuario creado correctamente.'); 
+            return redirect()->route('login')->with('success', 'Usuario creado correctamente.'); 
     }
     
 }

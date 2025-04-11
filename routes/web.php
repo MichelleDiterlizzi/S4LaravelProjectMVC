@@ -15,11 +15,7 @@ Route::get('/index', function () {
 
     })->name('index');
 
-    Route::get('/destroy', function () {
-
-        return view('profile.warning');
     
-    })->name('profile.destroy');
 
 
 Route::middleware('guest')->group(function () {
@@ -51,6 +47,6 @@ Route::middleware('auth')->group(function () {
     
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-
+    Route::get('/destroy', function () {return view('profile.warning');})->name('destroy');
 });
 

@@ -10,9 +10,9 @@
     <div class=" bg-stone-200 rounded-sm p-4 flex gap-3 flex-col sm:max-w-lg min-h-screen border-r border-gray-500 sm:border-none sm:min-h-0">  
         <a href="{{ route('profile.show') }}" class="text-cyan-800">Perfil de usuario</a>
         <a href="{{ route('profile.edit') }}" >Edita perfil</a>
-        <a href="{{ route('profile.show') }}" >Eventos</a>
+        <a href="" >Eventos</a>
         <a href="{{ route('logout') }}">Sign out</a>
-        <a href="{{ route('profile.destroy') }}" class="text-red-500 border-gray-500 border-t">Eliminar cuenta</a>
+        <a href="{{ route('destroy') }}" class="text-red-500 border-gray-500 border-t">Eliminar cuenta</a>
     </div>
 
     <div class="rounded-sm flex gap-4 flex-col w-[60%] justify-top items-center sm:border border-gray-500 p-4">
