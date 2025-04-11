@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
     Route::post('/events', [EventController::class, 'store'])->name('events.store');
 
-    Route::post('/logout', [AuthController::class, 'destroy'])->name('logout');
+    Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     
