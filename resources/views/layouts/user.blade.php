@@ -14,7 +14,7 @@
         <nav class="w-[50%] flex justify-end mx-6">
             <ul class="flex gap-6">
                 <li class="font-bold text-xs"><a href="">HOME</a></li>
-                <li class="text-xs font-bold"><a href="">CATEGORIAS</a></li>
+                <li class="text-xs font-bold"><a href="{{ route('categories.index') }}">CATEGORIAS</a></li>
                 <li class="text-xs font-bold"><a href="">CONTACT US</a></li>
             </ul>
         </nav>
