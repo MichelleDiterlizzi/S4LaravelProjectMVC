@@ -12,14 +12,12 @@
         <ul class="list-disc list-inside space-y-2">
             @foreach($categories as $category)
                 <li>
-                    
-                    <a href="{{--route('categories.show', $category->id) --}}" class="text-blue-600 hover:underline"> 
+                    <a href="{{route('categories.show', $category->id)}}" class="text-blue-600 hover:underline"> 
                         {{ $category->name }}
                     </a> 
                 </li>
             @endforeach
         </ul>
-        {{-- Si usaste paginate: {{ $categories->links() }} --}}
     @else
         <p>No hay categorías disponibles en este momento.</p>
     @endif
