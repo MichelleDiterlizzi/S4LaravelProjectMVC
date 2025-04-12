@@ -35,6 +35,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
 
     Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
+    
     Route::post('/events', [EventController::class, 'store'])->name('events.store');
 
     Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');

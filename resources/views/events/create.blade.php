@@ -28,17 +28,17 @@
         
 
         <div class="w-[40%]">
-            <label for="adress">Dirección:</label>
-            <input class="p-2 border border-gray-300 text-gray-700 bg-gray-100 w-full" type="text" placeholder="DIRECCIÓN" name="adress" value="{{old('adress')}}" required>
-            @error ('adress')
+            <label for="address">Dirección:</label>
+            <input class="p-2 border border-gray-300 text-gray-700 bg-gray-100 w-full" type="text" placeholder="DIRECCIÓN" name="address" value="{{old('address')}}" required>
+            @error ('address')
             <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
             @enderror
         </div>
 
         <div class="w-[40%]">
-        <label for="date">Fecha:</label>
-        <input class="p-2 border border-gray-300 text-gray-700 bg-gray-100 w-full" type="datetime-local" name="date" value="{{old('date')}}" required>
-        @error ('date')
+        <label for="event_date">Fecha:</label>
+        <input class="p-2 border border-gray-300 text-gray-700 bg-gray-100 w-full" type="datetime-local" name="event_date" value="{{old('event_date')}}" required>
+        @error ('event_date')
             <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
             @enderror
         </div>
@@ -59,15 +59,15 @@
         
         <div class="w-[40%]">
             <label for="price">Precio:</label>
-            <input class="p-2 border border-gray-300 text-gray-700 bg-gray-100 w-full" type="number" placeholder="00.00" name="price" value="{{old('price')}}" id="price" disabled required>
+            <input class="p-2 border border-gray-300 text-gray-700 bg-gray-100 w-full" type="number" placeholder="00.00" name="price" value="{{old('price')}}" id="price" step="0.01" disabled required>
             @error ('price')
             <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
             @enderror
         </div>
 
         <div class="w-[40%]">
-            <label for="category">Categoría:</label>
-            <select class="p-2 border border-gray-300 text-gray-700 bg-gray-100 w-full" name="category_id" value="{{old('category')}}" required>
+            <label for="category_id">Categoría:</label>
+            <select class="p-2 border border-gray-300 text-gray-700 bg-gray-100 w-full" name="category_id" value="{{old('category_id')}}" required>
             @foreach($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
@@ -99,18 +99,18 @@
         </script>
 
         
-<div class="w-[82%] flex flex-col">
-    <label for="image">Imagen:</label>
-        <input id="image" class="hidden" type="file" name="image" onchange="updateFileName(this)" value="{{old('image')}}">
+    <div class="w-[82%] flex flex-col">
+        <label for="image">Imagen:</label>
+            <input id="image" class="hidden" type="file" name="image" onchange="updateFileName(this)" value="{{old('image')}}">
 
-        <label for="image" class="p-1 border rounded-2xl border-gray-300 text-gray-700 bg-gray-100 w-[30%]">
+            <label for="image" class="p-1 border rounded-2xl border-gray-300 text-gray-700 bg-gray-100 w-[30%]">
             Seleccionar archivo..
-        </label>
-        <span id="file-name" class=" text-gray-700">Ningún archivo seleccionado</span>
-        @error ('image')
-            <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+            </label>
+            <span id="file-name" class=" text-gray-700">Ningún archivo seleccionado</span>
+            @error ('image')
+                <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
             @enderror
-</div>
+    </div>
 
 <script>
     function updateFileName(input) {

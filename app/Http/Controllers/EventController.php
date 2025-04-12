@@ -21,27 +21,27 @@ class EventController extends Controller
         
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'adress' => 'required|string|max:255',
-            'date' => 'required|date_format:Y-m-d\TH:i',
+            'address' => 'required|string|max:255',
+            'event_date' => 'required|date_format:Y-m-d\TH:i',
             'price' => 'nullable|numeric',
             'is_free' => 'required|boolean',
             'description' => 'required|string|min:50',
-            'image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
-            'creator_id' => 'required|exists:users,id', // Asegúrate de que el creador exista
-            'category_id' => 'required|exists:categories,id', // Asegúrate de que la categoría exista
+            'image' => 'nullable|image|mimes:jpg,png,jpeg|max:5120',
+            'creator_id' => 'exists:users,id',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
-        // Manejar la imagen si se sube
+        
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('events', 'public'); // Guarda en storage/app/public/events
+            $path = $request->file('image')->store('events', 'public'); 
             $validated['image'] = $path;
         }
 
         if ($validated['is_free']) {
-            $validated['price'] = null; // Si es gratuito, el precio será null
+            $validated['price'] = null;
         }
 
-        $validated['creator_id'] = Auth::id(); // Asigna el ID del usuario autenticado
+        $validated['creator_id'] = Auth::id();
 
         
         Event::create($validated);
