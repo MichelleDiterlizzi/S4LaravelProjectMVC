@@ -19,6 +19,8 @@ Route::get('/index', function () {
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
 Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
+
+Route::get('/events/search', [EventController::class, 'search'])->name('events.search');
     
 
 

@@ -43,7 +43,5 @@
     @endif
     @endif
     
-
-   
 </div>
 @endsection

@@ -48,4 +48,15 @@ class EventController extends Controller
 
         return redirect()->route('events.create')->with('success', 'Evento creado exitosamente.');
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $events = Event::where('title', 'LIKE', "%{$query}%")
+            ->orWhere('description', 'LIKE', "%{$query}%")
+            ->where('event_date', '>=', now())
+            ->paginate(12);
+
+        return view('events.search', compact('events', 'query'));
+    }
 }
