@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Database\QueryException;
 
 class EventController extends Controller
 {
@@ -62,7 +64,32 @@ class EventController extends Controller
 
     public function show($id)
     {
-        $event = Event::findOrFail($id);
+        $event = Event::with(['creator', 'category', 'attendees'])->findOrFail($id);
+
         return view('events.show', compact('event'));
+    }
+
+    public function attend(Request $request, Event $event)
+    {
+        
+        $user = Auth::user();
+
+        
+        $validated = $request->validate([
+            'guests_count' => 'nullable|integer|min:0|max:50',
+        ]);
+
+        $guestsCount = $validated['guests_count'] ?? 0;
+
+        try {
+            $event->attendees()->attach($user->id, ['guests_count' => $guestsCount]);
+
+            return redirect()->route('events.show', $event->id)->with('success', '¡Te has apuntado al evento!');
+
+        } catch (QueryException $e) {
+            
+            return redirect()->route('events.show', $event->id)->with('error', 'Ya estabas apuntado a este evento.');
+        }
+
     }
 }
