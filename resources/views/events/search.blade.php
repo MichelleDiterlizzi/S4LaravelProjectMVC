@@ -23,13 +23,13 @@
                     @endif
                     
                     <div class="p-4 flex flex-col flex-grow"> 
-                        <a href="{{-- route('event.show', $event->id) --}}" class="text-blue-600 hover:underline font-semibold text-lg mb-2">
+                        <a href="{{ route('events.show', $event->id) }}" class="text-blue-600 hover:underline font-semibold text-lg mb-2">
                             {{ $event->title }}
                         </a>
                         <p class="text-gray-600 text-sm mb-1">{{ $event->address ?? 'Dirección no disponible' }}</p>
                         <p class="text-gray-600 text-sm mb-4">{{ $event->event_date ?? 'Fecha no disponible' }}</p>
                         <div class="mt-auto"> 
-                             <a href="{{-- route('event.show', $event->id) --}}" class="bg-orange-400 text-white px-3 py-1 rounded text-sm inline-block">Ver Detalles</a>
+                             <a href="{{ route('events.show', $event->id) }}" class="bg-orange-400 text-white px-3 py-1 rounded text-sm inline-block">Ver Detalles</a>
                         </div>
                     </div>
                 </div>

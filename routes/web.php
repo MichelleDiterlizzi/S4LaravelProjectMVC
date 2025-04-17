@@ -21,7 +21,7 @@ Route::get('/categories', [CategoryController::class, 'index'])->name('categorie
 Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
 
 Route::get('/events/search', [EventController::class, 'search'])->name('events.search');
-    
+
 
 
 Route::middleware('guest')->group(function () {
@@ -36,7 +36,6 @@ Route::middleware('guest')->group(function () {
            ->name('login.authenticate');
 
 });
-
 
 Route::middleware('auth')->group(function () {
 
@@ -56,4 +55,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/destroy', function () {return view('profile.warning');})->name('destroy');
 });
+
+Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
 
