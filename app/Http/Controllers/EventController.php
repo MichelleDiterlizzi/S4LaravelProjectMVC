@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\RedirectResponse;
 
 class EventController extends Controller
 {
@@ -78,20 +79,27 @@ class EventController extends Controller
         $validated = $request->validate([
             'guests_count' => 'nullable|integer|min:0|max:50',
         ]);
-
         $guestsCount = $validated['guests_count'] ?? 0;
-
         try {
             $event->attendees()->attach($user->id, ['guests_count' => $guestsCount]);
 
             return redirect()->route('events.show', $event->id)->with('success', '¡Te has apuntado al evento!');
-
         } catch (QueryException $e) {
-            
             return redirect()->route('events.show', $event->id)->with('error', 'Ya estabas apuntado a este evento.');
         }
-
     }
 
-    
+    public function unattend(Request $request, Event $event): RedirectResponse
+    {
+        $user = Auth::user();
+        $detached = $event->attendees()->detach($user->id);
+
+        if ($detached) {
+            return redirect()->route('profile.eventsRegistered')
+                             ->with('success', 'Has cancelado tu asistencia al evento: "' . $event->title . '".');
+        } else {
+             return redirect()->route('profile.eventsRegistered')
+                             ->with('error', 'No se pudo cancelar la asistencia o ya no estabas apuntado al evento: "' . $event->title . '".');
+        }
+    }
 }

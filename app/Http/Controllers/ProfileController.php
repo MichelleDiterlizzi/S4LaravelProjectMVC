@@ -67,12 +67,19 @@ class ProfileController extends Controller
         return redirect()->route('index')->with('status', '¡Tu cuenta ha sido eliminada!');
     }
 
-    public function events(): View
-    {
+    public function events(): View{
         $user = Auth::user();
 
         $attendedEvents = $user->attendedEvents()->with('category')->paginate(10); 
 
         return view('profile.eventsRegistered', compact('attendedEvents'));
+    }
+
+    public function eventsCreated(): View{
+        $user = Auth::user();
+
+        $createdEvents = $user->createdEvents()->with('category')->paginate(10); 
+
+        return view('profile.eventsCreated', compact('createdEvents'));
     }
 }

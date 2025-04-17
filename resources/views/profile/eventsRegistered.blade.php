@@ -11,22 +11,22 @@
         <a href="{{ route('profile.show') }}" class="text-cyan-800">Perfil de usuario</a>
         <a href="{{ route('profile.edit') }}" >Edita perfil</a>
         <a href="{{ route('profile.eventsRegistered') }}" >Eventos Inscrito</a>
-        <a href="{{--route('profile.eventsCreated') --}}" >Eventos Creados</a>
+        <a href="{{route('profile.eventsCreated') }}" >Eventos Creados</a>
         <a href="{{ route('logout') }}">Sign out</a>
         <a href="{{ route('destroy') }}" class="text-red-500 border-gray-500 border-t">Eliminar cuenta</a>
     </div>
 
     <div class="flex flex-col w-[60%] items-start border border-gray-500 rounded-lg shadow-md p-6">
-        <h1 class="font-bold text-2xl mb-6">Eventos a los que Estás Apuntado</h1>
+        <h1 class="text-2xl mb-6">Eventos a los que Estás Apuntado:</h1>
 
-        @if (session('unattend_success'))
+        @if (session('success'))
             <div class="w-full bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
-                {{ session('unattend_success') }}
+                {{ session('success') }}
             </div>
         @endif
-         @if (session('unattend_error'))
+         @if (session('error'))
             <div class="w-full bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-                {{ session('unattend_error') }}
+                {{ session('error') }}
             </div>
         @endif
 
