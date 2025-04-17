@@ -55,7 +55,7 @@
                 </p>
 
                 <div class="mt-2 gap-4 flex flex-col sm:flex-row sm:items-center sm:justify-end">
-                    <a href="{{-- route('events.edit', $event->id) --}}" class="btn btn-sm btn-warning underline ">Editar</a>
+                    <a href="{{ route('events.edit', $event->id) }}" class="btn btn-sm btn-warning underline ">Editar</a>
                     
                     <form action="{{-- route('events.destroy', $event->id) --}}" method="POST" style="display: inline;" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este evento?');">
                         @csrf

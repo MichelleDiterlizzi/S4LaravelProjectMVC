@@ -102,4 +102,10 @@ class EventController extends Controller
                              ->with('error', 'No se pudo cancelar la asistencia o ya no estabas apuntado al evento: "' . $event->title . '".');
         }
     }
+
+    public function edit(Event $event)
+    {
+        $categories = Category::all();
+        return view('events.edit', compact('event', 'categories'));
+    }
 }
