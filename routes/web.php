@@ -22,7 +22,9 @@ Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categ
 
 Route::get('/events/search', [EventController::class, 'search'])->name('events.search');
 
+Route::get('/events-registered', [ProfileController::class, 'events'])->name('profile.eventsRegistered');
 
+Route::get('/events-created', [ProfileController::class, 'eventsCreated'])->name('profile.eventsCreated');
 
 Route::middleware('guest')->group(function () {
     
@@ -56,6 +58,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/destroy', function () {return view('profile.warning');})->name('destroy');
 
     Route::post('/events/{event}/attend', [EventController::class, 'attend'])->name('events.attend');
+    
+    Route::delete('/events/{event}/unattend', [EventController::class, 'unattend'])->name('events.unattend');
 });
 
 Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash; 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule; 
+use Illuminate\Contracts\View\View;
 
 class ProfileController extends Controller
 {
@@ -27,7 +28,6 @@ class ProfileController extends Controller
 {
     $user = Auth::user();
 
-    // Validar los datos enviados desde el formulario
     $validated = $request->validate([
         'name' => ['required', 'string', 'max:255'],
         'email' => [
@@ -48,7 +48,6 @@ class ProfileController extends Controller
 
     $user->save();
 
-    // Redirigir con un mensaje de éxito
     return redirect()->route('profile.show')->with('success', 'Perfil actualizado correctamente.');
     }
 
@@ -59,17 +58,21 @@ class ProfileController extends Controller
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current_password'],
         ]);
-
         $user = $request->user();
 
         Auth::logout();
-
-        $user->delete(); // Esto disparará eventos 'deleting'/'deleted' si los tienes
-
-        
-        $request->session()->invalidate();
+        $user->delete(); // Esto disparará eventos 'deleting'/'deleted' si los tienes$request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return redirect()->route('index')->with('status', '¡Tu cuenta ha sido eliminada!');
+    }
+
+    public function events(): View
+    {
+        $user = Auth::user();
+
+        $attendedEvents = $user->attendedEvents()->with('category')->paginate(10); 
+
+        return view('profile.eventsRegistered', compact('attendedEvents'));
     }
 }

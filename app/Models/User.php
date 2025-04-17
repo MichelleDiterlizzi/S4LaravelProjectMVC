@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -53,5 +54,12 @@ class User extends Authenticatable
 
         });
 
+    }
+    public function attendedEvents(): BelongsToMany
+    {
+        return $this->belongsToMany(Event::class, 'event_users', 'user_id', 'event_id')
+                    ->withPivot('guests_count')
+                    ->withTimestamps()
+                    ->orderBy('event_date', 'asc');
     }
 }
