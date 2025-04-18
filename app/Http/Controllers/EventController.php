@@ -111,14 +111,10 @@ class EventController extends Controller
 
     public function update(Request $request, Event $event)
     {
-
-        // --- VALIDACIÓN ---
-        // Si usas un Form Request (ej. UpdateEventRequest), la validación es automática.
-        // Si no, valida aquí:
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'start_date' => 'required|date', // Ajusta el formato si es necesario
+            'event_date' => 'required|date', // Ajusta el formato si es necesario
             'location' => 'nullable|string|max:255',
             // Añade aquí todos los campos que permites editar
         ]);
