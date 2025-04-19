@@ -4,7 +4,7 @@
 @section('title', "Detalles evento")
 @section('content')
 
-<div class="flex w-full flex-col items-center justify-center bg-white gap-5 p-10 ml-5">
+<div class="flex w-full flex-col items-center bg-white gap-5 p-10 ml-5">
     @if(session('success'))
     <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
         {{ session('success') }}
@@ -17,7 +17,7 @@
     @endif
     
     @if($event)
-    <div class="flex w-full flex-row items-center justify-center gap-5 p-10">
+    <div class="flex w-full flex-row items-center gap-5 p-10">
 
         <div class="border border-gray-500 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row w-[90%] md:w-3/4">
             <div class="p-4 flex flex-col flex-grow w-full md:w-1/2 gap-4">

@@ -4,10 +4,10 @@
 @section('title', 'Crear Evento')
 @section('content')
 
-<div class="flex flex-col items-center bg-white py-10 gap-4">
+<div class="flex flex-col items-center justify-around bg-white p-10 gap-4">
     
 
-    <div class="w-[60%] border-gray-300 shadow-md rounded-lg p-10 flex flex-col gap-4">
+    <div class="md:w-[70%] w-full border-gray-300 shadow-md rounded-lg p-10 flex flex-col gap-4">
         <h1 class="font-bold text-xl ">Crea tu evento!</h1>
         <p class="">¡Organiza una experiencia inolvidable! Crea tu evento y haz que todos lo recuerden.</p>
 
@@ -15,10 +15,10 @@
         <div style="color: green;">{{ session('success') }}</div>
         @endif
 
-        <form class="flex flex-wrap gap-4 " action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data">
+        <form class="flex md:flex-row flex-col flex-wrap gap-4 items-center" action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <div class="w-[40%]">
+        <div class="w-[70%] md:w-[40%]">
             <label for="title">Título:</label>
             <input class="p-2 border border-gray-300 text-gray-700 bg-gray-100 w-full" type="text" placeholder="TÍTULO" value="{{old('title')}}" name="title">
             @error ('title')
@@ -27,7 +27,7 @@
         </div>
         
 
-        <div class="w-[40%]">
+        <div class="w-[70%] md:w-[40%]">
             <label for="address">Dirección:</label>
             <input class="p-2 border border-gray-300 text-gray-700 bg-gray-100 w-full" type="text" placeholder="DIRECCIÓN" name="address" value="{{old('address')}}" required>
             @error ('address')
@@ -35,7 +35,7 @@
             @enderror
         </div>
 
-        <div class="w-[40%]">
+        <div class="w-[70%] md:w-[40%]">
         <label for="event_date">Fecha:</label>
         <input class="p-2 border border-gray-300 text-gray-700 bg-gray-100 w-full" type="datetime-local" name="event_date" value="{{old('event_date')}}" required>
         @error ('event_date')
@@ -43,7 +43,7 @@
             @enderror
         </div>
 
-        <div class="w-[40%] items-center">
+        <div class="w-[70%] md:w-[40%] items-center">
             <label for="is_free">¿Es gratuito?</label>
             <br>
             <select class="p-2 border border-gray-300 text-gray-700 bg-gray-100 w-full" value="{{old('
@@ -57,7 +57,7 @@
         </div>
 
         
-        <div class="w-[40%]">
+        <div class="w-[70%] md:w-[40%]">
             <label for="price">Precio:</label>
             <input class="p-2 border border-gray-300 text-gray-700 bg-gray-100 w-full" type="number" placeholder="00.00" name="price" value="{{old('price')}}" id="price" step="0.01" disabled required>
             @error ('price')
@@ -65,7 +65,7 @@
             @enderror
         </div>
 
-        <div class="w-[40%]">
+        <div class="w-[70%] md:w-[40%]">
             <label for="category_id">Categoría:</label>
             <select class="p-2 border border-gray-300 text-gray-700 bg-gray-100 w-full" name="category_id" value="{{old('category_id')}}" required>
             @foreach($categories as $category)
@@ -77,7 +77,7 @@
             @enderror
         </div>
 
-        <div class="w-[82%]">
+        <div class="w-[70%] md:w-[82%]">
             <label for="description">Descripción:</label>
             <textarea class="p-2 border border-gray-300 text-gray-700 bg-gray-100 w-full" value="{{old('description')}}" name="description" placeholder="DESCRIPCIÓN" required></textarea>
             @error ('description')
@@ -99,7 +99,7 @@
         </script>
 
         
-    <div class="w-[82%] flex flex-col">
+    <div class="w-[70%] md:w-[82%] flex flex-col">
         <label for="image">Imagen:</label>
             <input id="image" class="hidden" type="file" name="image" onchange="updateFileName(this)" value="{{old('image')}}">
 
@@ -120,7 +120,7 @@
 </script>
 
 
-        <button class="bg-orange-400 w-[82%] text-white p-2 " type="submit">Crear Evento</button>
+        <button class="bg-orange-400 w-[70%] md:w-[82%] text-white p-2 " type="submit">Crear Evento</button>
     </form>
 </div>
 </div>
