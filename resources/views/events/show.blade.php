@@ -24,14 +24,14 @@
                 <h1 class="text-blue-600 hover:underline font-semibold text-2xl mb-2">{{ $event->title }}:</h1>
                     
                 <p class="text-gray-600 text-sm mb-1">{{ $event->description }}</p>
-                <p class="text-gray-600 text-sm mb-1">{{ $event->address }}</p>
-                <p class="text-gray-600 text-sm mb-1">{{ $event->price ?? 'El evento es gratuito' }}</p>
-                <p class="text-gray-600 text-sm mb-1">{{ $event->event_date ?? 'Fecha no disponible' }}</p>
-                <p class="text-md text-gray-700">
+                <p class="text-gray-600 text-sm mb-1">Dirección: {{ $event->address }}</p>
+                <p class="text-gray-600 text-sm mb-1">{{ $event->is_free ? 'El evento es gratuito' : 'Precio: ' . $event->price. '€' }}</p>
+                <p class="text-gray-600 text-sm mb-1">Fecha: {{ $event->event_date ?? 'Fecha no disponible' }}</p>
+                <p class="text-md text-gray-700 font-semibold">
                     Personas apuntadas: <span class="font-semibold">{{ $event->total_people }}</span>
                 </p>
-                <p class="text-md text-gray-700">
-                Organizado por: <span class="font-semibold">{{ $event->creator->name }}</span>
+                <p class="text-md text-gray-700 font-semibold">
+                Organizado por: <span>{{ $event->creator->name }}</span>
                 </p>
                  <form action="{{ route('events.attend', $event->id) }}" method="POST" class="flex flex-col items-start gap-4 mt-5">
                             @csrf
