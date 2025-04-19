@@ -67,9 +67,6 @@
         </div>
     @empty
     @endforelse
-            </div>
-        @empty
-        @endforelse
         @else
             <div class="w-full bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative mb-4" role="alert">
                 No has creado ningún evento aún.
