@@ -21,7 +21,7 @@
         </nav>
     </header>
 
-    <div class="container">
+    <div class="container min-h-screen">
         @yield('content')
     </div>
 

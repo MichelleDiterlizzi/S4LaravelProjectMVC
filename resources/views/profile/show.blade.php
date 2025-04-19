@@ -4,10 +4,10 @@
 @section('title', 'User Profile')
 @section('content')
 
-<div class="flex flex-row items-top justify-center bg-white  gap-10 p-10">
+<div class="flex md:flex-row flex-col items-center md:items-start justify-center bg-white  gap-5 p-5">
     
 
-    <div class=" bg-stone-200 rounded-sm p-4 flex gap-3 flex-col w-[20%] ">  
+    <div class="  bg-stone-200 rounded-sm p-4 flex gap-3 flex-col w-[70%] md:w-[20%]">  
         <a href="{{ route('profile.show') }}" class="text-cyan-800">Perfil de usuario</a>
         <a href="{{ route('profile.edit') }}" >Edita perfil</a>
         <a href="{{ route('profile.eventsRegistered') }}" >Eventos Inscrito</a>
@@ -16,7 +16,7 @@
         <a href="{{ route('destroy') }}" class="text-red-500 border-gray-500 border-t">Eliminar cuenta</a>
     </div>
 
-    <div class="rounded-sm flex gap-2 flex-col w-[60%] justify-top items-center border border-gray-500 ">
+    <div class="rounded-sm gap-2 flex flex-col w-[70%] md:w-[65%] justify-top items-center border border-gray-500 ">
         <h1 class="font-bold text-2xl mt-4">Perfil de Usuario</h1>
         <p class="text-sm mb-4">Maneja y actualiza tus datos de perfil.</p>
 
