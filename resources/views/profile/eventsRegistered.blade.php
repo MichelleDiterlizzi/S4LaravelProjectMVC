@@ -8,9 +8,9 @@
     
 
     <div class=" bg-stone-200 rounded-sm p-4 flex gap-3 flex-col w-[20%] ">  
-        <a href="{{ route('profile.show') }}" class="text-cyan-800">Perfil de usuario</a>
+        <a href="{{ route('profile.show') }}">Perfil de usuario</a>
         <a href="{{ route('profile.edit') }}" >Edita perfil</a>
-        <a href="{{ route('profile.eventsRegistered') }}" >Eventos Inscrito</a>
+        <a href="{{ route('profile.eventsRegistered') }}" class="text-cyan-800" >Mis Entradas</a>
         <a href="{{route('profile.eventsCreated') }}" >Eventos Creados</a>
         <a href="{{ route('logout') }}">Sign out</a>
         <a href="{{ route('destroy') }}" class="text-red-500 border-gray-500 border-t">Eliminar cuenta</a>
@@ -52,7 +52,7 @@
                             <p class="text-gray-600 text-sm mb-2">{{ $event->address ?? 'Dirección no disponible' }}</p>
 
                             <p class="text-gray-700 text-sm font-medium mb-3">
-                                Asistes con: {{ $event->pivot->guests_count ?? 0 }} invitado(s)
+                                Personas apuntadas: <span class="font-semibold">{{ $event->total_people }}</span> 
                             </p>
 
 
