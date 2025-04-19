@@ -16,7 +16,7 @@
         <a href="{{ route('destroy') }}" class="text-red-500 border-gray-500 border-t">Eliminar cuenta</a>
     </div>
 
-    <div class="rounded-sm flex gap-4 flex-col w-[60%] justify-top items-center sm:border border-gray-500 p-4">
+    <div class="rounded-sm gap-4 flex flex-col w-[70%] md:w-[65%] justify-top items-center sm:border border-gray-500 p-4">
             <h2 class="text-lg font-medium text-red-700">Eliminar Cuenta</h2>
             <p class="text-sm text-gray-600">
                 Una vez que tu cuenta sea eliminada, todos sus recursos y datos serán borrados permanentemente...
