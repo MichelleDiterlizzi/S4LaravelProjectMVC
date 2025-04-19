@@ -56,6 +56,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/destroy', function () {return view('profile.warning');})->name('destroy');
 
     Route::post('/events/{event}/attend', [EventController::class, 'attend'])->name('events.attend');
+
+    Route::delete('/events/{event}/unattend', [EventController::class, 'unattend'])->name('events.unattend');
+    
+    Route::get('/events-registered', [ProfileController::class, 'events'])->name('profile.eventsRegistered');
+
+    Route::get('/events-created', [ProfileController::class, 'eventsCreated'])->name('profile.eventsCreated');
+
+    Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
+
+    Route::patch('/events/{event}', [EventController::class, 'update'])->name('events.update');
 });
 
 Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');

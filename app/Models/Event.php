@@ -13,6 +13,12 @@ class Event extends Model
 
     protected $fillable = ['title', 'address', 'event_date', 'price', 'is_free', 'description', 'image', 'creator_id', 'category_id'];
 
+    protected $casts = [
+        'event_date' => 'datetime',
+        'is_free' => 'boolean',
+        'price' => 'decimal:2',
+    ];
+
     public function category(){
     return $this->belongsTo(Category::class);
     }
