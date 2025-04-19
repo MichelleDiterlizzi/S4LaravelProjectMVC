@@ -136,6 +136,29 @@
                 <button type="submit" class="underline btn btn-primary cursor-pointer" >Guardar Cambios</button>
                 <a href="{{ route('profile.eventsCreated') }}" class="underline btn btn-secondary">Cancelar</a>
             </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const isFreeSelect = document.querySelector('select[name="is_free"]');
+                    const priceInput = document.getElementById('price');
+                    function updatePriceInputState() {
+                        if (!isFreeSelect || !priceInput) {
+                            console.error("Error: No se encontraron los elementos 'is_free' o 'price'.");
+                            return;
+                        }
+                        if (isFreeSelect.value === '1') {
+                            priceInput.disabled = true;
+                            priceInput.value = '';
+                        }else {
+                            priceInput.disabled = false;
+                        }
+                    }
+                    updatePriceInputState();
+                    if (isFreeSelect) { 
+                       isFreeSelect.addEventListener('change', updatePriceInputState);
+                    }
+                });
+            </script>
         </form>
 
     </div>

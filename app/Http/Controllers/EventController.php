@@ -7,6 +7,7 @@ use App\Models\Event;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 
@@ -46,7 +47,6 @@ class EventController extends Controller
 
         $validated['creator_id'] = Auth::id();
 
-        
         Event::create($validated);
 
         return redirect()->route('events.create')->with('success', 'Evento creado exitosamente.');
@@ -114,14 +114,39 @@ class EventController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'event_date' => 'required|date', // Ajusta el formato si es necesario
-            'location' => 'nullable|string|max:255',
-            // Añade aquí todos los campos que permites editar
+            'event_date' => 'required|date',
+            'address' => 'nullable|string|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'is_free' => 'required|boolean',
+            'price' => 'nullable|numeric|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
 
-        $event->update($validatedData);
+        if ($request->boolean('is_free')) {
+            $validatedData['price'] = 0; 
+        }
+        
+        $imagePath = $event->image;
 
-        // --- REDIRECCIÓN ---
+        if ($request->hasFile('image')) {
+             if ($request->file('image')->isValid()) {
+                if ($imagePath) {
+                    Storage::disk('public')->delete($imagePath);
+                }
+                $newImagePath = $request->file('image')->store('events', 'public');
+                Log::info("Nueva imagen guardada en: {$newImagePath}");
+                $imagePath = $newImagePath;
+             }
+        }
+
+        $validatedData['image'] = $imagePath;
+
+        try {
+            $event->update($validatedData);
+        } catch (\Exception $e) {
+            return back()->with('error', 'No se pudieron guardar los cambios. Inténtalo de nuevo.');
+        }
+
         return redirect()->route('profile.eventsCreated')->with('success', '¡Evento actualizado correctamente!');
     }
 }
