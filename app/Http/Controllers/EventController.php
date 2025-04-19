@@ -149,4 +149,17 @@ class EventController extends Controller
 
         return redirect()->route('profile.eventsCreated')->with('success', '¡Evento actualizado correctamente!');
     }
+
+    public function destroy(Event $event)
+    {
+        if ($event->image) {
+            Storage::disk('public')->delete($event->image);
+        }
+
+        $event->delete();
+
+        return redirect()->route('profile.eventsCreated')->with('success', 'Evento eliminado correctamente.');
+    }
+
+
 }
