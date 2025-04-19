@@ -60,7 +60,7 @@
                     <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este evento?');">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger underline">Eliminar</button>
+                        <button type="submit" class="btn btn-sm btn-danger underline cursor-pointer ">Eliminar</button>
                     </form>
                 </div>
             </div>
