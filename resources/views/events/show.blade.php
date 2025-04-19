@@ -11,16 +11,16 @@
     </div>
     @endif
     @if(session('error'))
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                {{ session('error') }}
-            </div>
-        @endif
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        {{ session('error') }}
+    </div>
+    @endif
     
     @if($event)
     <div class="flex w-full flex-row items-center justify-center gap-5 p-10">
 
-        <div class="border border-gray-500 rounded-lg shadow-lg overflow-hidden flex flex-row w-3/4">
-            <div class="p-4 flex flex-col flex-grow w-1/2 gap-4">
+        <div class="border border-gray-500 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row w-[90%] md:w-3/4">
+            <div class="p-4 flex flex-col flex-grow w-full md:w-1/2 gap-4">
                 <h1 class="text-blue-600 hover:underline font-semibold text-2xl mb-2">{{ $event->title }}:</h1>
                     
                 <p class="text-gray-600 text-sm mb-1">{{ $event->description }}</p>
@@ -47,10 +47,9 @@
                                 </button>
                             </div>
                 </form>
-                
             </div>
 
-            <div class="p-4 flex flex-col flex-grow w-1/2">
+            <div class="p-4 flex flex-col flex-grow md:w-1/2 md:h-150 h-64">
 
                 @if($event->image)
                 <div class="w-full h-full bg-cover bg-center" style="background-image: url('{{ asset('storage/' . $event->image) }}')">
@@ -66,4 +65,5 @@
             <p class="w-full text-center">Error al cargar el evento</p>
         @endif
     </div>
+</div>
 @endsection
