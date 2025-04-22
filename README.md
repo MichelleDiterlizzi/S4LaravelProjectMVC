@@ -1,66 +1,180 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Event Organizer (Laravel)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a web application developed with Laravel to manage and discover events. It allows users to register, create events, view events by category, search for events, register for them, and manage their profile along with the events they have created or are attending. The project follows the MVC pattern and uses Tailwind CSS for frontend design.
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+* [Key Features](#key-features)
+* [Technologies Used](#technologies-used)
+* [Prerequisites](#prerequisites)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Project Structure and MVC](#project-structure-and-mvc)
+* [Database (Models and Relationships)](#database-models-and-relationships)
+    * [ERD Design](#erd-design)
+    * [Models and Migrations](#models-and-migrations)
+    * [Eloquent ORM](#eloquent-orm)
+* [Views (Blade and Tailwind CSS)](#views-blade-and-tailwind-css)
+* [Forms and Validation](#forms-and-validation)
+* [Authentication and Authorization](#authentication-and-authorization)
+* [Error Handling](#error-handling)
+* [Repository Management (Gitflow)](#repository-management-gitflow)
+* [Contributing](#contributing)
+* [License](#license)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Key Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* **Full Event Management (CRUD):** Create, Read (details and listings), Update, and Delete events.
+* **Category Management:** View events by category.
+* **Event Search:** Functionality to search for events.
+* **User Management and Authentication:** Registration, login, logout.
+* **User Profile Management:** View, edit, update, and delete user profiles.
+* **Event Registration:** Authenticated users can register for and unregister from events.
+* **User Dashboard:** Profile sections to view created events and events the user is registered for.
+* **Event Showcase:** Homepage featuring highlighted sections (free, popular, daytime, evening events).
+* **Responsive Design:** Interface adaptable to different screen sizes using Tailwind CSS.
 
-## Learning Laravel
+## Technologies Used
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+* **Backend Framework:** Laravel 11
+* **Language:** PHP 8.1
+* **Database:** MySQL
+* **Frontend:** Blade, Tailwind CSS, Alpine.js
+* **Web Server:** Apache
+* **Dependency Manager:** Composer
+* **Build Tool:** Vite
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Prerequisites
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* PHP (version required by your Laravel)
+* Composer
+* Node.js and NPM (for Vite and frontend dependencies)
+* Database Server (the one you chose)
+* Git
 
-## Laravel Sponsors
+## Installation
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Follow these steps to set up the project in your local environment:
 
-### Premium Partners
+1.  **Clone the repository:**
+    ```bash
+    git clone [GITHUB_REPOSITORY_URL]
+    cd [DIRECTORY_NAME]
+    ```
+2.  **Install PHP dependencies:**
+    ```bash
+    composer install
+    ```
+3.  **Copy the environment file:**
+    ```bash
+    cp .env.example .env
+    ```
+4.  **Generate the application key:**
+    ```bash
+    php artisan key:generate
+    ```
+5.  **Configure the database:** Edit the `.env` file with your database details (name, user, password).
+    ```dotenv
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=your_db_name
+    DB_USERNAME=your_db_user
+    DB_PASSWORD=your_db_password
+    ```
+6.  **Run the migrations:**
+    ```bash
+    php artisan migrate
+    ```
+    *(Optional: If you have seeders for initial data)*
+    ```bash
+    php artisan db:seed
+    ```
+7.  **Install frontend dependencies:**
+    ```bash
+    npm install
+    ```
+8.  **Compile frontend assets:**
+    * For development (with hot reload): `npm run dev`
+    * For production: `npm run build`
+9.  **Create the storage symbolic link:** (If using `storage/app/public` for images)
+    ```bash
+    php artisan storage:link
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Usage
+
+1.  **Start the development server:**
+    ```bash
+    php artisan serve
+    ```
+    *(Note: If using Valet, Herd, Laragon, etc., access via your configured `.test` domain instead)*
+
+2.  **Keep Vite running (if in development):**
+    ```bash
+    npm run dev
+    ```
+3.  Open your browser and go to `http://127.0.0.1:8000` (or the URL provided by `php artisan serve`, or your `.test` domain like `http://eventorganizerlaravel.test/`).
+
+## Project Structure and MVC
+
+The project follows Laravel's standard **Model-View-Controller (MVC)** architecture:
+
+* **Models (`app/Models`):** Represent database entities (`Event`, `User`, `Category`). Interact with the database using Eloquent.
+* **Views (`resources/views`):** Present the user interface using Blade templates and Tailwind CSS styles. Include layouts, partials, and page-specific views.
+* **Controllers (`app/Http/Controllers`):** Handle user requests, interact with models to retrieve/modify data, and load the appropriate views (`HomeController`, `EventController`, `CategoryController`, `ProfileController`, `AuthController`, `RegisterController`).
+
+## Database (Models and Relationships)
+
+### ERD Design
+
+An Entity-Relationship Diagram (ERD) was designed to define the entities, attributes, and relationships for the event management system.
+
+### Models and Migrations
+
+Database migrations (`database/migrations`) were created to define the table structure corresponding to the models:
+
+* `User`: Stores registered user information.
+* `Category`: Defines event categories.
+* `Event`: Stores details for each event, including relationships with `User` (creator) and `Category`.
+* `event_users` (Pivot Table): Manages the many-to-many relationship between `Event` and `User` (attendees), including the number of guests (`guests_count`).
+
+### Eloquent ORM
+
+Laravel's Eloquent ORM is used for object-oriented database interaction, defining relationships (`belongsTo`, `belongsToMany`) within the models.
+
+## Views (Blade and Tailwind CSS)
+
+The user interface is built with:
+
+* **Blade:** Laravel's templating engine for creating dynamic views. Utilizes layouts (`layouts/`), partials (`partials/` or `components/`) for code reuse (e.g., `event_card`).
+* **Tailwind CSS:** A utility-first CSS framework for rapid, custom UI development. Responsive design is implemented to adapt to different devices.
+* **Alpine.js:** Used to add light frontend interactivity (e.g., dropdown menus).
+
+## Forms and Validation
+
+* Forms have been created for registration, login, event creation/editing, and profile editing.
+* Data validation is implemented on both the client-side (HTML5, potentially JS) and server-side (using Laravel Form Requests or controller validation) to ensure data integrity.
+
+## Authentication and Authorization
+
+* **Authentication:** Laravel's built-in authentication system (likely Fortify/Sanctum or Breeze/Jetstream/UI) is used to manage user registration, login, and logout, as evidenced by the routes grouped by `middleware('guest')` and `middleware('auth')`.
+* **Authorization:** Authorization mechanisms are implemented (or planned) to control actions authenticated users can perform. For example, using Laravel Gates or Policies to allow only the event creator to edit or delete their event, or only the user themselves to edit/delete their profile.
+    *(Optional: Mention if Roles/Permissions are used, e.g., with Spatie Laravel Permissions)*
+
+## Error Handling
+
+Laravel provides robust error handling. Custom error pages (e.g., 404, 500) can be created in `resources/views/errors`.
+
+## Repository Management (Gitflow)
+
+Development follows (or should follow) a Gitflow-based workflow using a GitHub repository:
+
+* `main` (production) and `develop` branches.
+* `feature/` branches for new functionalities.
+* Use of Pull Requests for reviewing and merging code into `develop`.
+* `release/` and `hotfix/` branches as needed.
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Contributions are welcome. Please follow the Gitflow workflow, create a Pull Request from your feature branch to `develop`, and describe your changes.
