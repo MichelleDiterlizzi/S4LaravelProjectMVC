@@ -64,7 +64,7 @@ class ProfileController extends Controller
         $user->delete(); // Esto disparará eventos 'deleting'/'deleted' si los tienes$request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('index')->with('status', '¡Tu cuenta ha sido eliminada!');
+        return redirect()->route('home')->with('status', '¡Tu cuenta ha sido eliminada!');
     }
 
     public function events(): View{

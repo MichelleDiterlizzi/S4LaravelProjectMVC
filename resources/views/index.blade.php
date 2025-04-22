@@ -76,7 +76,7 @@
       </section>
   
       <section class="mb-12">
-          <h2 class="text-2xl md:text-3xl font-semibold mb-4 text-gray-800 border-l-4 border-orange-400 pl-3">Eventos Nocturnos (Desde las 19:00)</h2>
+          <h2 class="text-2xl md:text-3xl font-semibold mb-4 text-gray-800 border-l-4 border-orange-400 pl-3">Eventos Nocturnos</h2>
            @if($eveningEvents->isNotEmpty())
               <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                   @foreach($eveningEvents as $event)
@@ -89,7 +89,7 @@
       </section>
 
       <section class="mb-12">
-          <h2 class="text-2xl md:text-3xl font-semibold mb-4 text-gray-800 border-l-4 border-orange-400 pl-3">Eventos Durante el Día (Antes de las 19:00)</h2>
+          <h2 class="text-2xl md:text-3xl font-semibold mb-4 text-gray-800 border-l-4 border-orange-400 pl-3">Eventos Durante el Día</h2>
            @if($dayEvents->isNotEmpty())
               <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                   @foreach($dayEvents as $event)
