@@ -34,7 +34,7 @@
             <div class="space-y-6 w-full">
                 @forelse ($createdEvents as $event)
                 <div class="border border-gray-300 rounded-lg overflow-hidden flex flex-col md:flex-row ">
-                    <div class="w-full sm:w-1/4 md:w-1/5 flex-shrink-0 h-40 sm:h-auto bg-gray-200">
+                    <div class="w-full md:w-1/5 flex-shrink-0 h-40 md:h-auto bg-gray-200">
                         @if ($event->image)
                         <img class="w-full h-full object-cover" src="{{ asset('storage/' . $event->image) }}" alt="Imagen de {{ $event->title }}">
                         @else
