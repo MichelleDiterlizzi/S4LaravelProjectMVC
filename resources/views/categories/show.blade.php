@@ -4,7 +4,7 @@
 @section('title', $category->name)
 @section('content')
 
-<div class="flex w-full flex-col items-center justify-center bg-white gap-5 p-10 ml-5">
+<div class="flex w-full flex-col items-center bg-white gap-5 p-10 ml-5 min-h-screen">
 
     <h1 class="text-2xl">{{ $category->name }}:</h1>
 

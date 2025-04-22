@@ -45,14 +45,66 @@
 
     </header>
     <div class="w-full h-96 bg-cover bg-center"  style="background-image: url('{{ asset('img/background3.jpg') }}')">
+  </div>
+
+    <main class="w-full p-4 md:p-8">
+
+      <section class="mb-12">
+          <h2 class="text-2xl md:text-3xl font-semibold mb-4 text-gray-800 border-l-4 border-orange-400 pl-3">Próximos Eventos Gratuitos</h2>
+          @if($freeEvents->isNotEmpty())
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                  @foreach($freeEvents as $event)
+                      @include('partials.event_card', ['event' => $event]) 
+                  @endforeach
+              </div>
+          @else
+              <p class="text-gray-600">No hay eventos gratuitos próximos en este momento.</p>
+          @endif
+      </section>
   
+      <section class="mb-12">
+          <h2 class="text-2xl md:text-3xl font-semibold mb-4 text-gray-800 border-l-4 border-orange-400 pl-3">Eventos Más Populares</h2>
+           @if($popularEvents->isNotEmpty())
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                  @foreach($popularEvents as $event)
+                       @include('partials.event_card', ['event' => $event])
+                  @endforeach
+              </div>
+          @else
+              <p class="text-gray-600">No hay eventos populares próximos en este momento.</p>
+          @endif
+      </section>
   
-    </div>
-  <main>
+      <section class="mb-12">
+          <h2 class="text-2xl md:text-3xl font-semibold mb-4 text-gray-800 border-l-4 border-orange-400 pl-3">Eventos Nocturnos (Desde las 19:00)</h2>
+           @if($eveningEvents->isNotEmpty())
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                  @foreach($eveningEvents as $event)
+                       @include('partials.event_card', ['event' => $event])
+                  @endforeach
+              </div>
+          @else
+              <p class="text-gray-600">No hay eventos nocturnos próximos en este momento.</p>
+          @endif
+      </section>
 
-
-
+      <section class="mb-12">
+          <h2 class="text-2xl md:text-3xl font-semibold mb-4 text-gray-800 border-l-4 border-orange-400 pl-3">Eventos Durante el Día (Antes de las 19:00)</h2>
+           @if($dayEvents->isNotEmpty())
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                  @foreach($dayEvents as $event)
+                       @include('partials.event_card', ['event' => $event])
+                  @endforeach
+              </div>
+          @else
+              <p class="text-gray-600">No hay eventos diurnos próximos en este momento.</p>
+          @endif
+      </section>
+  
   </main>
-  <footer></footer>
+
+  <footer class="w-full p-10 bg-gray-800 text-white py-4 text-center">
+    <p>&copy; 2025 Event Organizer. Todos los derechos reservados.</p>
+  </footer>
 </body>
 </html>
