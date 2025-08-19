@@ -20,7 +20,6 @@ This project is a web application developed with Laravel to manage and discover 
 * [Error Handling](#error-handling)
 * [Repository Management (Gitflow)](#repository-management-gitflow)
 * [Contributing](#contributing)
-* [License](#license)
 
 ## Key Features
 
@@ -53,6 +52,8 @@ This project is a web application developed with Laravel to manage and discover 
 * Git
 
 ## Installation
+
+### Local Development
 
 Follow these steps to set up the project in your local environment:
 
@@ -101,6 +102,43 @@ Follow these steps to set up the project in your local environment:
     ```bash
     php artisan storage:link
     ```
+
+### Production Deployment (Railway)
+
+This project is configured for easy deployment on Railway. Follow these steps:
+
+1. **Push your code to GitHub:**
+   ```bash
+   git add .
+   git commit -m "Configure for Railway deployment"
+   git push origin main
+   ```
+
+2. **Deploy on Railway:**
+   - Go to [Railway.app](https://railway.app)
+   - Sign up/Login with your GitHub account
+   - Click "New Project" → "Deploy from GitHub repo"
+   - Select your repository
+   - Railway will automatically detect it's a Laravel project
+
+3. **Add MySQL Database:**
+   - In your Railway project, go to "Variables" tab
+   - Click "New Variable" → "Reference Variable"
+   - Add a MySQL database service
+   - Railway will automatically set the database environment variables
+
+4. **Configure Environment Variables:**
+   - Copy the variables from `railway.env.example`
+   - Update `APP_URL` with your Railway domain
+   - Set `APP_ENV=production`
+   - Set `APP_DEBUG=false`
+
+5. **Deploy:**
+   - Railway will automatically build and deploy your application
+   - The post-deploy script will run migrations and setup the database
+
+6. **Access your application:**
+   - Your app will be available at `https://your-app-name.railway.app`
 
 ## Usage
 
