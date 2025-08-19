@@ -41,14 +41,17 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --no-script
 # Copy package files
 COPY package.json package-lock.json ./
 
-# Install Node.js dependencies
-RUN npm ci --only=production
+# Install Node.js dependencies (including dev dependencies for build)
+RUN npm ci
 
 # Copy application code
 COPY . .
 
 # Build frontend assets
 RUN npm run build
+
+# Remove dev dependencies to reduce image size
+RUN npm prune --production
 
 # Run composer scripts after all files are copied
 RUN composer dump-autoload --optimize

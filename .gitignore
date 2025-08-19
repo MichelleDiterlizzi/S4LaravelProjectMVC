@@ -26,3 +26,4 @@ railway.json
 nixpacks.toml
 Dockerfile.alternative
 Dockerfile.simple
+Dockerfile.optimized

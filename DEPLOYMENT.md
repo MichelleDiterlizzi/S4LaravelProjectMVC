@@ -91,12 +91,17 @@ QUEUE_CONNECTION=sync
 
 ### Common Issues
 
-1. **Composer Script Error (Could not open input file: artisan):**
-   - **Problem:** Composer trying to run scripts before artisan file is available
-   - **Solution:** Using Dockerfile.simple with --no-scripts flag
-   - **Action:** Redeploy - the simplified Dockerfile handles composer scripts correctly
+1. **Vite Not Found Error (sh: 1: vite: not found):**
+   - **Problem:** Vite is a dev dependency but needed for production build
+   - **Solution:** Using Dockerfile.optimized that installs all dependencies then removes dev ones
+   - **Action:** Redeploy - the optimized Dockerfile handles build dependencies correctly
 
-2. **Package Installation Failed (libmysqlclient-dev not found):**
+2. **Composer Script Error (Could not open input file: artisan):**
+   - **Problem:** Composer trying to run scripts before artisan file is available
+   - **Solution:** Using Dockerfile.optimized with --no-scripts flag
+   - **Action:** Redeploy - the optimized Dockerfile handles composer scripts correctly
+
+3. **Package Installation Failed (libmysqlclient-dev not found):**
    - **Problem:** Package `libmysqlclient-dev` not available in newer Debian versions
    - **Solution:** Updated Dockerfile to use `libmariadb-dev` instead
    - **Action:** Redeploy - the Dockerfile now uses the correct package names
