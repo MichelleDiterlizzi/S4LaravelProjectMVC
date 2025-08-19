@@ -91,12 +91,17 @@ QUEUE_CONNECTION=sync
 
 ### Common Issues
 
-1. **Vite Not Found Error (sh: 1: vite: not found):**
+1. **Script Files Not Found (chmod: cannot access 'railway-start.sh'):**
+   - **Problem:** Railway scripts excluded by .dockerignore
+   - **Solution:** Updated .dockerignore to allow railway-*.sh files
+   - **Action:** Redeploy - the scripts will now be available in the container
+
+2. **Vite Not Found Error (sh: 1: vite: not found):**
    - **Problem:** Vite is a dev dependency but needed for production build
    - **Solution:** Using Dockerfile.optimized that installs all dependencies then removes dev ones
    - **Action:** Redeploy - the optimized Dockerfile handles build dependencies correctly
 
-2. **Composer Script Error (Could not open input file: artisan):**
+3. **Composer Script Error (Could not open input file: artisan):**
    - **Problem:** Composer trying to run scripts before artisan file is available
    - **Solution:** Using Dockerfile.optimized with --no-scripts flag
    - **Action:** Redeploy - the optimized Dockerfile handles composer scripts correctly

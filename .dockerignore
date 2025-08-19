@@ -45,10 +45,11 @@ tests
 phpunit.xml
 
 # Railway specific files (not needed in container)
-railway-*.sh
 railway-*.ini
 railway-*.json
 railway-*.toml
 railway-*.example
 nixpacks.toml
-Dockerfile.alternative 
+Dockerfile.alternative
+Dockerfile.simple
+Dockerfile.optimized 
