@@ -32,8 +32,11 @@ WORKDIR /app
 # Copy composer files
 COPY composer.json composer.lock ./
 
+# Copy artisan file (needed for composer scripts)
+COPY artisan ./
+
 # Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
 
 # Copy package files
 COPY package.json package-lock.json ./
@@ -46,6 +49,9 @@ COPY . .
 
 # Build frontend assets
 RUN npm run build
+
+# Run composer scripts after all files are copied
+RUN composer dump-autoload --optimize
 
 # Set permissions
 RUN chmod +x railway-start.sh railway-post-deploy.sh railway-db-check.sh

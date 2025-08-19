@@ -25,3 +25,4 @@ yarn-error.log
 railway.json
 nixpacks.toml
 Dockerfile.alternative
+Dockerfile.simple

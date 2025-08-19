@@ -91,12 +91,17 @@ QUEUE_CONNECTION=sync
 
 ### Common Issues
 
-1. **Package Installation Failed (libmysqlclient-dev not found):**
+1. **Composer Script Error (Could not open input file: artisan):**
+   - **Problem:** Composer trying to run scripts before artisan file is available
+   - **Solution:** Using Dockerfile.simple with --no-scripts flag
+   - **Action:** Redeploy - the simplified Dockerfile handles composer scripts correctly
+
+2. **Package Installation Failed (libmysqlclient-dev not found):**
    - **Problem:** Package `libmysqlclient-dev` not available in newer Debian versions
    - **Solution:** Updated Dockerfile to use `libmariadb-dev` instead
    - **Action:** Redeploy - the Dockerfile now uses the correct package names
 
-2. **MySQL Driver Not Found (could not find driver):**
+3. **MySQL Driver Not Found (could not find driver):**
    - **Problem:** PHP MySQL extensions not installed
    - **Solution:** Using Dockerfile with all required PHP extensions
    - **Action:** Redeploy - the Dockerfile includes pdo_mysql and mysqli extensions
