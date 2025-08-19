@@ -12,6 +12,16 @@ if [ ! -f ".railway-setup-complete" ]; then
         php artisan key:generate
     fi
     
+    # Check PHP extensions
+    echo "🔍 Checking PHP extensions..."
+    php -m | grep -E "(pdo_mysql|mysqli)" || {
+        echo "❌ MySQL extensions not found!"
+        echo "Installed extensions:"
+        php -m
+        exit 1
+    }
+    echo "✅ MySQL extensions found"
+    
     # Check database configuration
     echo "🔍 Checking database configuration..."
     ./railway-db-check.sh

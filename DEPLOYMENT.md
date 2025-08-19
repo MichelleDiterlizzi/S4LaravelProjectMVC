@@ -91,12 +91,17 @@ QUEUE_CONNECTION=sync
 
 ### Common Issues
 
-1. **Migration Errors (SQLSTATE[HY000]: General error):**
+1. **MySQL Driver Not Found (could not find driver):**
+   - **Problem:** PHP MySQL extensions not installed
+   - **Solution:** Using Dockerfile with all required PHP extensions
+   - **Action:** Redeploy - the Dockerfile includes pdo_mysql and mysqli extensions
+
+2. **Migration Errors (SQLSTATE[HY000]: General error):**
    - **Problem:** Migration trying to drop non-existent columns
    - **Solution:** The migration files have been updated to check if columns exist before dropping them
    - **Action:** Redeploy the application - the updated migrations will handle this automatically
 
-2. **Database Connection Issues:**
+3. **Database Connection Issues:**
    - **Problem:** App using SQLite instead of MySQL
    - **Solution:** Ensure `DB_CONNECTION=mysql` is set in Railway variables
    - **Action:** Check that all database variables are properly set in Railway dashboard

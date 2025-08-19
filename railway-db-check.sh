@@ -19,10 +19,12 @@ echo "✅ Database variables are set"
 echo "🔌 Testing database connection..."
 php artisan tinker --execute="
 try {
-    DB::connection()->getPdo();
+    \$pdo = DB::connection()->getPdo();
     echo '✅ Database connection successful';
+    echo 'Database: ' . \$pdo->query('SELECT DATABASE()')->fetchColumn();
 } catch (Exception \$e) {
     echo '❌ Database connection failed: ' . \$e->getMessage();
+    echo 'Error code: ' . \$e->getCode();
     exit(1);
 }
 "
