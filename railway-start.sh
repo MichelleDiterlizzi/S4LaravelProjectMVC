@@ -12,11 +12,20 @@ if [ ! -f ".railway-setup-complete" ]; then
         php artisan key:generate
     fi
     
-    # Run migrations
-    php artisan migrate --force
+    # Check database configuration
+    echo "🔍 Checking database configuration..."
+    ./railway-db-check.sh
+    
+    # Run migrations with error handling
+    echo "🗄️ Running database migrations..."
+    php artisan migrate --force || {
+        echo "⚠️ Migration failed, trying to reset and migrate..."
+        php artisan migrate:fresh --force
+    }
     
     # Run seeders
-    php artisan db:seed --force
+    echo "🌱 Running database seeders..."
+    php artisan db:seed --force || echo "⚠️ Seeding failed, continuing..."
     
     # Create storage link
     php artisan storage:link

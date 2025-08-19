@@ -91,17 +91,22 @@ QUEUE_CONNECTION=sync
 
 ### Common Issues
 
-1. **Build Fails:**
+1. **Migration Errors (SQLSTATE[HY000]: General error):**
+   - **Problem:** Migration trying to drop non-existent columns
+   - **Solution:** The migration files have been updated to check if columns exist before dropping them
+   - **Action:** Redeploy the application - the updated migrations will handle this automatically
+
+2. **Database Connection Issues:**
+   - **Problem:** App using SQLite instead of MySQL
+   - **Solution:** Ensure `DB_CONNECTION=mysql` is set in Railway variables
+   - **Action:** Check that all database variables are properly set in Railway dashboard
+
+3. **Build Fails:**
    - Check the build logs in Railway
    - Ensure all dependencies are in `composer.json`
    - Verify PHP version compatibility
 
-2. **Database Connection Issues:**
-   - Verify database variables are set
-   - Check if MySQL service is running
-   - Ensure migrations can run
-
-3. **App Not Starting:**
+4. **App Not Starting:**
    - Check the startup logs
    - Verify `APP_KEY` is generated
    - Ensure all required variables are set
