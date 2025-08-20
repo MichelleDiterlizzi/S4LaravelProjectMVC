@@ -4,7 +4,7 @@
 echo "🚀 Starting Event Organizer Laravel application..."
 
 # Check if we need to run setup
-if [ ! -f ".railway-setup-complete" ]; then
+if [ ! -f ".railway-setup-complete" ] || [ "$FORCE_SETUP" = "true" ]; then
     echo "🔧 Running initial setup..."
     
     # Generate app key if not exists
@@ -48,6 +48,9 @@ if [ ! -f ".railway-setup-complete" ]; then
     # Mark setup as complete
     touch .railway-setup-complete
     echo "✅ Setup completed!"
+    
+    # Clear force setup flag
+    unset FORCE_SETUP
 fi
 
 # Start the application
